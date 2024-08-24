@@ -12,6 +12,7 @@ const{ Otp, User , Cookie} = require('./models');
 const { hashPassword, comparePassword } = require('./hasher');
 const multer = require('multer');
 const upload = multer();
+mongoose.set('strictQuery', false); // or true, based on your preference
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -69,7 +70,7 @@ function getMessageModel(phone) {
     }
 }
 app.get("/home", async (req, res) => {
-    const mongoURI = 'mongodb+srv://ravikumariitk21:Ravi123@cluster0.36spd.mongodb.net/ChatApp';
+    const mongoURI = 'mongodb+srv://itsishan1411:ShNc4A%40%24pg%2A26Yi@cluster0.qf6nd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
     await dbconnect(mongoURI);
     const username = req.query.username;
     const phone =  req.query.phone;
@@ -106,7 +107,7 @@ app.get("/home", async (req, res) => {
 
 app.get('/real', async (req,res)=>{
     console.log("recieved")
-    const mongoURI = 'mongodb+srv://ravikumariitk21:Ravi123@cluster0.36spd.mongodb.net/ChatApp';
+      const mongoURI = 'mongodb+srv://itsishan1411:ShNc4A%40%24pg%2A26Yi@cluster0.qf6nd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
     await dbconnect(mongoURI);
     const username = req.query.username;
     const phone =  req.query.phone;
@@ -150,7 +151,7 @@ app.post('/register', async (req, res) => {
         otp: OTP,
         token: token
     });
-    const mongoURI = 'mongodb+srv://ravikumariitk21:Ravi123@cluster0.36spd.mongodb.net/ChatApp';
+      const mongoURI = 'mongodb+srv://itsishan1411:ShNc4A%40%24pg%2A26Yi@cluster0.qf6nd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
     await dbconnect(mongoURI);
      data.save();
     mailer(req.body.email, OTP, "registration",req.body.username);
@@ -181,7 +182,7 @@ async function cookieSave(phone) {
 }
 app.post('/verify-otp', async (req,res)=>{
     console.log(req.body);
-    const mongoURI = 'mongodb+srv://ravikumariitk21:Ravi123@cluster0.36spd.mongodb.net/ChatApp';
+      const mongoURI = 'mongodb+srv://itsishan1411:ShNc4A%40%24pg%2A26Yi@cluster0.qf6nd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
     await dbconnect(mongoURI);
     const otpRecord = await Otp.findOne({ phone: req.body.phone });
     if(!otpRecord) res.send("No phone number found");
@@ -222,7 +223,7 @@ app.get('/login',(req,res)=>{
 })
 app.post('/login',async (req,res)=>{
     console.log(req.body)
-    const mongoURI = 'mongodb+srv://ravikumariitk21:Ravi123@cluster0.36spd.mongodb.net/ChatApp';
+      const mongoURI = 'mongodb+srv://itsishan1411:ShNc4A%40%24pg%2A26Yi@cluster0.qf6nd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
     await dbconnect(mongoURI);
     console.log(req.body.phone)
     await cookieSave(req.body.phone);
@@ -247,7 +248,7 @@ app.get('/forget',(req,res)=>{
 })
 app.post('/forget', async (req,res)=>{
     console.log(req.body)
-    const mongoURI = 'mongodb+srv://ravikumariitk21:Ravi123@cluster0.36spd.mongodb.net/ChatApp';
+      const mongoURI = 'mongodb+srv://itsishan1411:ShNc4A%40%24pg%2A26Yi@cluster0.qf6nd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
     await dbconnect(mongoURI);
     const result = await User.findOne({phone:req.body.phone,email:req.body.email});
     if(result)
@@ -270,7 +271,7 @@ app.post('/forget', async (req,res)=>{
 
 app.post('/verify-otp-reset', async (req,res)=>{
     console.log(req.body);
-    const mongoURI = 'mongodb+srv://ravikumariitk21:Ravi123@cluster0.36spd.mongodb.net/ChatApp';
+      const mongoURI = 'mongodb+srv://itsishan1411:ShNc4A%40%24pg%2A26Yi@cluster0.qf6nd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
     await dbconnect(mongoURI);
     const otpRecord = await Otp.findOne({ phone: req.body.phone });
     if(!otpRecord) return res.render("userdoesnotexists")
@@ -291,7 +292,7 @@ app.post('/verify-otp-reset', async (req,res)=>{
     });
 })
 app.post('/change-password',async (req,res)=>{
-    const mongoURI = 'mongodb+srv://ravikumariitk21:Ravi123@cluster0.36spd.mongodb.net/ChatApp';
+      const mongoURI = 'mongodb+srv://itsishan1411:ShNc4A%40%24pg%2A26Yi@cluster0.qf6nd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
     await dbconnect(mongoURI);
     try{
         const result = await User.updateOne(
@@ -342,7 +343,7 @@ app.post('/newChat',upload.none(), async (req, res) => {
         return res.send("You can't send a message to yourself");
     }
 
-    const mongoURI = 'mongodb+srv://ravikumariitk21:Ravi123@cluster0.36spd.mongodb.net/ChatApp';
+      const mongoURI = 'mongodb+srv://itsishan1411:ShNc4A%40%24pg%2A26Yi@cluster0.qf6nd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
     await dbconnect(mongoURI);
     const messageSchema = new mongoose.Schema({
         senderName: String,
