@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ravikumariitk/ChatApp.git"
+    "url": "git+https://github.com/ishanag14/ChatAPP.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ravikumariitk/ChatApp/issues"
+    "url": "https://github.com/ishanag14/ChatAPP/issues"
   },
-  "homepage": "https://github.com/ravikumariitk/ChatApp#readme",
+  "homepage": "https://github.com/ishanag14/ChatAPP#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
